@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-
+import { useEffect } from 'react';
+import { setUser } from 'store/userSlice';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLogInMutation } from 'store/authApi';
@@ -8,7 +9,7 @@ function LoginPage(params) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [logIn] = useLogInMutation();
+  const [logIn, { data, error }] = useLogInMutation();
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'email':
@@ -19,10 +20,19 @@ function LoginPage(params) {
         return;
     }
   };
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+      dispatch(setUser(data));
+    }
+    // eslint-disable-next-line
+  }, [data, error]);
 
   const handleSubmit = e => {
     e.preventDefault();
-    logIn({ email, password }).then(console.log);
+    // dispatch(setUser());
+    // dispatch(setUser());
+    logIn({ email, password });
     setEmail('');
     setPassword('');
   };

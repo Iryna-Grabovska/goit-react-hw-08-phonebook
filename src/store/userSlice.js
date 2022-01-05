@@ -10,12 +10,12 @@ const userSlice = createSlice({
   initialState,
   extraRedusers: {
     setUser(state, action) {
-      state.name = action.playload.name;
+      state.user = action.playload.user;
       state.token = action.playload.token;
       state.isLoggedIn = true;
     },
     removeUser(state) {
-      state.user = null;
+      state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
     },
@@ -23,12 +23,3 @@ const userSlice = createSlice({
 });
 export const { setUser, removeUser } = userSlice.actions;
 export default userSlice.reducer;
-// setUser(state, action) {
-//   // state.email = action.playload.email;
-
-// setUser(state, action) {
-//   // state.email = action.playload.email;
-//   state.user = action.playload.user;
-//   state.token = action.playload.token;
-//   state.id = action.playload.id;
-// },

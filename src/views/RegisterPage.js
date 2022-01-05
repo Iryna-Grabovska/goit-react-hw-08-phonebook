@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { setUser } from 'store/userSlice.js';
 import { useRegisterMutation } from 'store/authApi';
 function RegisterPage() {
@@ -8,7 +9,7 @@ function RegisterPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [registerUser] = useRegisterMutation();
+  const [registerUser, { data, error }] = useRegisterMutation();
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'name':
@@ -21,10 +22,19 @@ function RegisterPage() {
         return;
     }
   };
+
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+      dispatch(setUser(data));
+    }
+    // eslint-disable-next-line
+  }, [data, error]);
+
   const handleSubmit = e => {
     e.preventDefault();
     registerUser({ name, email, password });
-    // dispatch(setUser({ name, email, password }));
+    // dispatch(setUser());
     setName('');
     setEmail('');
     setPassword('');

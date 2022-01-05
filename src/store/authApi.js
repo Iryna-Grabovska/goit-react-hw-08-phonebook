@@ -23,38 +23,38 @@ export const authApi = createApi({
       invalidatesTags: ['Auth'],
     }),
     logIn: build.mutation({
-      query: body => ({
+      query: ({ user }) => ({
         url: '/users/login',
         method: 'POST',
-        body,
+        body: user,
       }),
       invalidatesTags: ['Auth'],
     }),
-    fetchContacts: build.query({
-      query: () => `/contacts`,
-      providesTags: result =>
-        result
-          ? [
-              ...result.map(({ id }) => ({ type: 'Contact', id })),
-              { type: 'Contact', id: 'LIST' },
-            ]
-          : [{ type: 'Contact', id: 'LIST' }],
-    }),
-    deleteContacts: build.mutation({
-      query: id => ({
-        url: `/contacts/${id}`,
-        method: 'DELETE',
-      }),
-      invalidatesTags: ['Contacts'],
-    }),
-    createContacts: build.mutation({
-      query: newContacts => ({
-        url: `/contacts`,
-        method: 'POST',
-        body: newContacts,
-      }),
-      invalidatesTags: ['Contacts'],
-    }),
+    // fetchContacts: build.query({
+    //   query: () => `/contacts`,
+    //   providesTags: result =>
+    //     result
+    //       ? [
+    //           ...result.map(({ id }) => ({ type: 'Contact', id })),
+    //           { type: 'Contact', id: 'LIST' },
+    //         ]
+    //       : [{ type: 'Contact', id: 'LIST' }],
+    // }),
+    // deleteContacts: build.mutation({
+    //   query: id => ({
+    //     url: `/contacts/${id}`,
+    //     method: 'DELETE',
+    //   }),
+    //   invalidatesTags: ['Contacts'],
+    // }),
+    // createContacts: build.mutation({
+    //   query: newContacts => ({
+    //     url: `/contacts`,
+    //     method: 'POST',
+    //     body: newContacts,
+    //   }),
+    //   invalidatesTags: ['Contacts'],
+    // }),
   }),
 });
 export const {

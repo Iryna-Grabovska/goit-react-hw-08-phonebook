@@ -12,59 +12,62 @@ import {
 } from 'store/authApi';
 
 function HomePage() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { isAuth, email } = UserAuth();
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-  const { data = [], isLoading } = useFetchContactsQuery();
+  // const [name, setName] = useState('');
+  // const [number, setNumber] = useState('');
+  // const { data = [], isLoading } = useFetchContactsQuery();
 
-  const [createContacts] = useCreateContactsMutation();
-  const [deleteContact, { isLoading: isDeleting }] =
-    useDeleteContactsMutation();
+  // const [createContacts] = useCreateContactsMutation();
+  // const [deleteContact, { isLoading: isDeleting }] =
+  //   useDeleteContactsMutation();
 
-  const handleChange = e => {
-    const { name, value } = e.currentTarget;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'phone':
-        setNumber(value);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    createContacts({ name, number });
-    reset();
-  };
-
-  const reset = () => {
-    setName('');
-    setNumber('');
-  };
-
-  // const newContacts = () => {
-  // const normalizedFilter = filterContact.toLowerCase();
-  // return data.filter(contact =>
-  // contact.name.toLowerCase().includes(normalizedFilter),
-  // );
+  // const handleChange = e => {
+  //   const { name, value } = e.currentTarget;
+  //   switch (name) {
+  //     case 'name':
+  //       setName(value);
+  //       break;
+  //     case 'phone':
+  //       setNumber(value);
+  //       break;
+  //     default:
+  //       break;
+  //   }
   // };
 
-  const handleDeleteContacts = async id => {
-    await deleteContact(id).unwrap();
-  };
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   createContacts({ name, number });
+  //   reset();
+  // };
+
+  // const reset = () => {
+  //   setName('');
+  //   setNumber('');
+  // };
+
+  // // const newContacts = () => {
+  // // const normalizedFilter = filterContact.toLowerCase();
+  // // return data.filter(contact =>
+  // // contact.name.toLowerCase().includes(normalizedFilter),
+  // // );
+  // // };
+
+  // const handleDeleteContacts = async id => {
+  //   await deleteContact(id).unwrap();
+  // };
 
   return isAuth ? (
     <div>
       <h1>Welcome</h1>
-      <button onClick={() => dispatch(removeUser())}>
-        log out from {email}
+      <button
+      // onClick={() => dispatch(removeUser())}
+      >
+        log out from
+        {/* {email} */}
       </button>
-      <h2>Contacts</h2>
+      {/* <h2>Contacts</h2>
       <form onSubmit={handleSubmit} autoComplete="off">
         <label>
           name
@@ -97,7 +100,7 @@ function HomePage() {
             </button>
           </li>
         ))}
-      </ul>
+      </ul>*/}
     </div>
   ) : (
     <Routes>
