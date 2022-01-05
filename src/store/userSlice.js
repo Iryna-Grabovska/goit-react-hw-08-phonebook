@@ -8,7 +8,7 @@ const initialState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  redusers: {
+  extraRedusers: {
     setUser(state, action) {
       state.name = action.playload.name;
       state.token = action.playload.token;
@@ -17,7 +17,7 @@ const userSlice = createSlice({
     removeUser(state) {
       state.user = null;
       state.token = null;
-      state.isLoggedIn = null;
+      state.isLoggedIn = false;
     },
   },
 });

@@ -47,12 +47,13 @@ function HomePage() {
     setNumber('');
   };
 
-  const newContacts = () => {
-    // const normalizedFilter = filterContact.toLowerCase();
-    // return data.filter(contact =>
-    // contact.name.toLowerCase().includes(normalizedFilter),
-    // );
-  };
+  // const newContacts = () => {
+  // const normalizedFilter = filterContact.toLowerCase();
+  // return data.filter(contact =>
+  // contact.name.toLowerCase().includes(normalizedFilter),
+  // );
+  // };
+
   const handleDeleteContacts = async id => {
     await deleteContact(id).unwrap();
   };
@@ -63,7 +64,7 @@ function HomePage() {
       <button onClick={() => dispatch(removeUser())}>
         log out from {email}
       </button>
-      <h1>Login</h1>
+      <h2>Contacts</h2>
       <form onSubmit={handleSubmit} autoComplete="off">
         <label>
           name
@@ -73,20 +74,26 @@ function HomePage() {
         <label>
           number
           <input
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+            required
+            onChange={handleChange}
+            // id={phoneInputId}
             type="number"
             name="number"
             value={number}
-            onChange={handleChange}
+            // onChange={handleChange}
           />
         </label>
       </form>
       <ul>
-        {newContacts().map(({ id, name, phone }) => (
+        {data.map(({ id, name, phone }) => (
+          //  {newContacts().map(({ id, name, phone }) => (
           <li>
             <span>{name} :</span>
             <span>{number} :</span>
             <button type="button" onClick={() => handleDeleteContacts(id)}>
-              Delete{' '}
+              Delete
             </button>
           </li>
         ))}

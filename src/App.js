@@ -6,7 +6,7 @@ import { Loading } from 'components/Loader/Loader.js';
 // import LoginPage from 'views/LoginPage';
 // import RegisterPage from 'views/RegisterPage';
 
-// import { ContactsPage } from 'views/ContactsPage';
+import { ContactsPage } from 'views/ContactsPage';
 const HomePage = lazy(() => import('./views/HomePage'));
 const LoginPage = lazy(() => import('./views/LoginPage'));
 const RegisterPage = lazy(() => import('./views/RegisterPage'));
@@ -19,7 +19,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
-          {/* <Route path="contacts" element={<ContactsPage />} /> */}
+          <Route path="contacts" element={<ContactsPage />} />
 
           {/* <Route path="*" element={<NotFounView />} /> */}
         </Routes>

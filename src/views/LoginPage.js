@@ -22,8 +22,7 @@ function LoginPage(params) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(logIn({ email, password }));
-    // .then(console.log)
+    logIn({ email, password }).then(console.log);
     setEmail('');
     setPassword('');
   };
