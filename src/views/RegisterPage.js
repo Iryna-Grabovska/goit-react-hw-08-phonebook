@@ -34,6 +34,7 @@ function RegisterPage() {
   const handleSubmit = e => {
     e.preventDefault();
     registerUser({ name, email, password });
+
     // dispatch(setUser());
     setName('');
     setEmail('');

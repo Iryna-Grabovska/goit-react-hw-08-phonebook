@@ -30,6 +30,13 @@ export const authApi = createApi({
       }),
       invalidatesTags: ['Auth'],
     }),
+    logOut: build.mutation({
+      query: () => ({
+        url: `/users/logout`,
+        method: 'POST',
+        invalidatesTags: ['Auth'],
+      }),
+    }),
     // fetchContacts: build.query({
     //   query: () => `/contacts`,
     //   providesTags: result =>
@@ -60,6 +67,7 @@ export const authApi = createApi({
 export const {
   useRegisterMutation,
   useLogInMutation,
+  useLogOutMutation,
 
   useFetchContactsQuery,
   useDeleteContactsMutation,

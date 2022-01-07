@@ -1,8 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
+import { ContactsPage } from 'views/ContactsPage';
 
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { UserAuth } from 'Hooks/userAuth.js';
 import { removeUser } from 'store/userSlice';
 import {
@@ -12,11 +13,12 @@ import {
 } from 'store/authApi';
 
 function HomePage() {
-  // const dispatch = useDispatch();
-  const { isAuth, email } = UserAuth();
+  const dispatch = useDispatch();
+  const { isAuth, user } = UserAuth();
+  const isLoggedIn = useSelector(state => state.isLoggedIn);
   // const [name, setName] = useState('');
   // const [number, setNumber] = useState('');
-  // const { data = [], isLoading } = useFetchContactsQuery();
+  // const [data = [], isLoading] = useFetchContactsQuery();
 
   // const [createContacts] = useCreateContactsMutation();
   // const [deleteContact, { isLoading: isDeleting }] =
@@ -47,27 +49,44 @@ function HomePage() {
   //   setNumber('');
   // };
 
-  // // const newContacts = () => {
-  // // const normalizedFilter = filterContact.toLowerCase();
-  // // return data.filter(contact =>
-  // // contact.name.toLowerCase().includes(normalizedFilter),
-  // // );
-  // // };
+  // const newContacts = () => {
+  //   // const normalizedFilter = filterContact.toLowerCase();
+  //   // return data.filter(contact =>
+  //   //   contact.name.toLowerCase().includes(normalizedFilter),
+  //   // );
+  // };
 
   // const handleDeleteContacts = async id => {
   //   await deleteContact(id).unwrap();
   // };
-
-  return isAuth ? (
+  // if (isLoggedIn === true) {
+  //   return (
+  //     <>
+  //       <h1>hello</h1>
+  //     </>
+  //   );
+  // }
+  return (
+    // isAuth ? (
+    //   <div>
+    //     <h1>Welcome {user}</h1>
+    //   </div>
+    // ) : (
+    //   <Routes>
+    //     <Route path="*" element={<Navigate replace to="/login" />} />
+    //   </Routes>
+    // );
     <div>
-      <h1>Welcome</h1>
-      <button
-      // onClick={() => dispatch(removeUser())}
-      >
-        log out from
-        {/* {email} */}
-      </button>
-      {/* <h2>Contacts</h2>
+      {isLoggedIn ? (
+        <ContactsPage />
+      ) : (
+        <Routes>
+          <Route path="*" element={<Navigate replace to="/login" />} />
+        </Routes>
+      )}
+    </div>
+  );
+  /* <h2>Contacts</h2>
       <form onSubmit={handleSubmit} autoComplete="off">
         <label>
           name
@@ -91,7 +110,7 @@ function HomePage() {
       </form>
       <ul>
         {data.map(({ id, name, phone }) => (
-          //  {newContacts().map(({ id, name, phone }) => (
+          // {newContacts().map(({ id, name, phone }) => (
           <li>
             <span>{name} :</span>
             <span>{number} :</span>
@@ -100,12 +119,11 @@ function HomePage() {
             </button>
           </li>
         ))}
-      </ul>*/}
-    </div>
-  ) : (
-    <Routes>
-      <Route path="*" element={<Navigate replace to="/login" />} />
-    </Routes>
-  );
+      </ul> 
+   ) 
+  : (
+     <Routes>
+       <Route path="*" element={<Navigate replace to="/login" />} />
+     </Routes>*/
 }
 export default HomePage;

@@ -28,11 +28,13 @@ function LoginPage(params) {
     // eslint-disable-next-line
   }, [data, error]);
 
+  //  console.log(user);
   const handleSubmit = e => {
     e.preventDefault();
-    // dispatch(setUser());
-    // dispatch(setUser());
-    logIn({ email, password });
+    // dispatch(setUser({ email: user.email }));
+    // dispatch(logIn({ email, password }));
+    // logIn(user);
+    logIn({ user: { email, password } });
     setEmail('');
     setPassword('');
   };
