@@ -29,10 +29,10 @@ const ContactsList = () => {
   return (
     <>
       <ul className={s.ContactsList}>
-        {visibleContacts().map(({ id, name, phone }) => (
+        {visibleContacts().map(({ id, name, number }) => (
           <li key={id} className={s.contactsListItem}>
             <span> {name}: </span>
-            <span>{phone}</span>
+            <span>{number}</span>
             <button
               className={s.contactListBtn}
               type="button"
