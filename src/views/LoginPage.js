@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLogInMutation } from 'store/authApi';
 
-function LoginPage(params) {
+function LoginPage() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,12 +28,9 @@ function LoginPage(params) {
     // eslint-disable-next-line
   }, [data, error]);
 
-  //  console.log(user);
   const handleSubmit = e => {
     e.preventDefault();
-    // dispatch(setUser({ email: user.email }));
-    // dispatch(logIn({ email, password }));
-    // logIn(user);
+
     logIn({ user: { email, password } });
     setEmail('');
     setPassword('');

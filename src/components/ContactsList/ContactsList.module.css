@@ -1,0 +1,33 @@
+.contactListBtn {
+  width: 60px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid red;
+  color: red;
+  cursor: pointer;
+  margin-left: 30px;
+}
+.contactListBtn:hover {
+  background-color: red;
+  color: white;
+}
+
+.ContactsList {
+  padding-left: 10px;
+}
+.contactsListItem {
+  justify-content: space-between;
+  max-width: 500px;
+  display: flex;
+  margin-top: 10px;
+  color: rgb(46, 46, 131);
+  font-weight: 500;
+  min-height: 40px;
+  padding: 10px;
+  background-color: rgb(235, 233, 229);
+  border-color: rgba(247, 245, 245, 0.911);
+  /* border: blue 1px solid; */
+  box-shadow: 0 2px 1px rgb(0 0 0 / 20%), 0 1px 1px rgb(0 0 0 / 14%),
+    0 1px 3px rgb(0 0 0 / 12%);
+}

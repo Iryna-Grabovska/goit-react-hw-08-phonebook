@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { buildQueries } from '@testing-library/react';
 
 export const authApi = createApi({
   reduserPath: 'authApi',
@@ -12,7 +13,7 @@ export const authApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Auth'],
+  tagTypes: ['Auth', 'Contacts'],
   endpoints: build => ({
     register: build.mutation({
       query: body => ({
@@ -37,37 +38,44 @@ export const authApi = createApi({
         invalidatesTags: ['Auth'],
       }),
     }),
-    // fetchContacts: build.query({
-    //   query: () => `/contacts`,
-    //   providesTags: result =>
-    //     result
-    //       ? [
-    //           ...result.map(({ id }) => ({ type: 'Contact', id })),
-    //           { type: 'Contact', id: 'LIST' },
-    //         ]
-    //       : [{ type: 'Contact', id: 'LIST' }],
-    // }),
-    // deleteContacts: build.mutation({
-    //   query: id => ({
-    //     url: `/contacts/${id}`,
-    //     method: 'DELETE',
-    //   }),
-    //   invalidatesTags: ['Contacts'],
-    // }),
-    // createContacts: build.mutation({
-    //   query: newContacts => ({
-    //     url: `/contacts`,
-    //     method: 'POST',
-    //     body: newContacts,
-    //   }),
-    //   invalidatesTags: ['Contacts'],
-    // }),
+    fetchCurrentUser: build.query({
+      query: () => ({
+        url: '/users/current',
+        invalidatesTags: ['Auth'],
+      }),
+    }),
+    fetchContacts: build.query({
+      query: () => `/contacts`,
+      providesTags: result =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: 'Contacts', id })),
+              { type: 'Contacts', id: 'LIST' },
+            ]
+          : [{ type: 'Contacts', id: 'LIST' }],
+    }),
+    deleteContacts: build.mutation({
+      query: id => ({
+        url: `/contacts/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Contacts'],
+    }),
+    createContacts: build.mutation({
+      query: newContacts => ({
+        url: `/contacts`,
+        method: 'POST',
+        body: newContacts,
+      }),
+      invalidatesTags: ['Contacts'],
+    }),
   }),
 });
 export const {
   useRegisterMutation,
   useLogInMutation,
   useLogOutMutation,
+  useFetchCurrentUserQuery,
 
   useFetchContactsQuery,
   useDeleteContactsMutation,
