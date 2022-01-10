@@ -4,6 +4,7 @@ import { setUser } from 'store/userSlice';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLogInMutation } from 'store/authApi';
+import Button from 'components/Button';
 
 function LoginPage() {
   const dispatch = useDispatch();
@@ -59,8 +60,9 @@ function LoginPage() {
             onChange={handleChange}
           />
         </label>
+        <Button label="LogIn" type="submit" />
 
-        <button type="submit">log in</button>
+        {/* <button type="submit">log in</button> */}
       </form>
       <p>
         Or <Link to="/register">Register</Link>

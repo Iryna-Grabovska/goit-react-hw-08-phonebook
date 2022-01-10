@@ -1,9 +1,11 @@
 import { NavLink } from 'react-router-dom';
+import s from './AuthNav.module.css';
 
 function AuthNav() {
   return (
     <>
       <NavLink
+        className={s.AuthNav}
         to="/register"
         style={({ isActive }) => ({
           color: isActive ? 'blue' : 'black',
@@ -12,6 +14,7 @@ function AuthNav() {
         SigIn
       </NavLink>
       <NavLink
+        className={s.AuthNav}
         to="/login"
         style={({ isActive }) => ({
           color: isActive ? 'blue' : 'black',

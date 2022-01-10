@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { setUser } from 'store/userSlice.js';
 import { useRegisterMutation } from 'store/authApi';
+import Button from 'components/Button';
+
 function RegisterPage() {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
@@ -66,7 +68,7 @@ function RegisterPage() {
             onChange={handleChange}
           />
         </label>
-        <button type="submit"> sign in</button>
+        <Button label="SigIn" type="submit" />
       </form>
       Already have er account
       <Link to="/login">log in</Link>
